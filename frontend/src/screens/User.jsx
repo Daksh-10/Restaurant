@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { useLocation } from 'react-router-dom';
 
+const url = "restaurant-up2w.onrender.com";
 
 const User = () => {
     const [message, setMessage] = useState('');
@@ -11,7 +12,7 @@ const User = () => {
         const fetchMessage = async () => {
             try {
                 const token = localStorage.getItem('token');
-                const response = await axios.get('http://localhost:3000/dashboard', {
+                const response = await axios.get(`https://${url}/dashboard`, {
                     headers: {
                         Authorization: `Bearer ${token}`
                     }
@@ -38,7 +39,7 @@ const User = () => {
     console.log(foodList);
     console.log(username);
       try {
-        axios.post('http://localhost:3000/handleOrder', { username, foodList });
+        axios.post(`https://${url}/handleOrder`, { username, foodList });
         alert('Order placed');
     }catch (error) {
       alert('Order failed');

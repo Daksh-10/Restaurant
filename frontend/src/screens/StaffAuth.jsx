@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const url = "restaurant-up2w.onrender.com";
 const StaffAuth = () => {
     //Sign Up or Login
     const [username, setUsername] = useState('');
@@ -12,7 +13,7 @@ const StaffAuth = () => {
     const handleSubmitSignUp = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/signup', { username, password });
+            const response = await axios.post(`https://${url}/signup`, { username, password });
             alert('Signup successful!');
         } catch (error) {
             alert('Signup failed');
@@ -23,13 +24,14 @@ const StaffAuth = () => {
     const handleSubmitLogIn = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/login', { username, password });
+            const response = await axios.post(`https://${url}/login`, { username, password });
             localStorage.setItem('token', response.data.token);
             alert('Login successful!');
+            navigate('./staff');
         } catch (error) {
             alert('Login failed');
         }
-        navigate('./staff');
+        
     };
 
     return (<>

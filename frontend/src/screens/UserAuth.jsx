@@ -2,6 +2,8 @@ import React, { useState } from 'react';
 import axios from 'axios';
 import { useNavigate } from 'react-router-dom';
 
+const url = "restaurant-up2w.onrender.com";
+
 const UserAuth = () => {
     //SignUp or Login
     const [username, setUsername] = useState('');
@@ -11,7 +13,7 @@ const UserAuth = () => {
     const handleSubmitSignUp = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/signup', { username, password });
+            const response = await axios.post(`https://${url}/signup`, { username, password });
             console.log(username, password);
             alert('Signup successful!');
             navigate('./reload');
@@ -22,7 +24,7 @@ const UserAuth = () => {
     const handleSubmitLogIn = async (event) => {
         event.preventDefault();
         try {
-            const response = await axios.post('http://localhost:3000/login', { username, password });
+            const response = await axios.post(`https://${url}/login`, { username, password });
             localStorage.setItem('token', response.data.token);
             alert('Login successful!');
             navigate('./user',{state: {username}});

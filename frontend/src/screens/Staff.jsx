@@ -2,13 +2,14 @@ import React, { useState } from 'react'
 import axios from 'axios'
 
 let response = [];
+const url = "restaurant-up2w.onrender.com";
 
 function Staff() {
   const [data, setData] = useState([]);
 
   async function getOrder() {
     try {
-      response = await axios.post('http://localhost:3000/getOrder').then(res => res.data.userOrder);
+      response = await axios.post(`https://${url}/getOrder`).then(res => res.data.userOrder);
       setData(response);
       console.log(response);
   }catch (error) {
